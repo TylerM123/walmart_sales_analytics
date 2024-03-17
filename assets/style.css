@@ -1,0 +1,103 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-link {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar-link-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.sidebar-link:hover {
+    background-color: #333;
+    border-radius: 20px;
+
+}
+
+.content_style_page_one {
+    margin-left: 10rem;
+    background-color: #000000;
+    padding: 2%;
+    color: white;
+    min-height: 100vh;
+}
+
+.content_style_page_two {
+    margin-left: 10rem;
+    background-color: #000000;
+    padding: 2%;
+    color: white;
+    min-height: 100vh;
+}
+
+.content_style_page_three {
+    margin-left: 10rem;
+    background-color: #000000;
+    padding: 2%;
+    color: white;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    padding: 2%;
+}
+
+.sidebar_style {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 15rem;
+    padding: 2%;
+    background-color: #111218;
+    color: white;
+}
+
+.not_found {
+    color: red;
+}
+
+.datepicker {
+    background-color: #000000;
+}
+
+.dash-graph {
+    margin: 2% auto;
+    background-color: #222; /* Dark background for graph */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Subtle shadow for depth */
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 100px;
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    font-size: 16px;
+    overflow: auto;
+    width: 100%;
+    height: auto;
+}
+
+.graph-size-grid-container{
+    width: 100%;
+    height: auto;
+}

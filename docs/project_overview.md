@@ -7,3 +7,4 @@
 - What time of day is  more popular to buy a product?
 - How does the number of orders change overtime for each city?
 - top products sold on a given date.
+- What day of the week.

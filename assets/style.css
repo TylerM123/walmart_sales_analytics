@@ -1,6 +1,12 @@
 body {
     padding: 0;
     margin: 0;
+    background-color: #000000;
+}
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .sidebar-link {
@@ -24,28 +30,11 @@ body {
 .content_style_page_one {
     margin-left: 10rem;
     background-color: #000000;
-    padding: 2%;
     color: white;
     min-height: 100vh;
 }
 
-.content_style_page_two {
-    margin-left: 10rem;
-    background-color: #000000;
-    padding: 2%;
-    color: white;
-    min-height: 100vh;
-}
-
-.content_style_page_three {
-    margin-left: 10rem;
-    background-color: #000000;
-    padding: 2%;
-    color: white;
-    min-height: 100vh;
-}
-
-.content-wrapper {
+.main-content-wrapper {
     padding: 2%;
 }
 
@@ -54,7 +43,7 @@ body {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 15rem;
+    width: 200px;
     padding: 2%;
     background-color: #111218;
     color: white;
@@ -66,13 +55,16 @@ body {
 
 .datepicker {
     background-color: #000000;
+    padding: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .dash-graph {
     margin: 2% auto;
     background-color: #222; /* Dark background for graph */
     padding: 20px;
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 20px; /* Rounded corners */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Subtle shadow for depth */
 }
 
@@ -85,9 +77,10 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 100px;
-    width: 100%;
+    gap: 50px;
+    width: auto;
     height: auto;
+    margin-bottom: 50px;
 }
 
 .container {

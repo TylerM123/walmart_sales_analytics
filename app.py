@@ -8,7 +8,7 @@ import plotly.graph_objs as go
 
 
 # Replace with the correct path to your dataset
-walmart_sales_df = pd.read_csv('/Users/tylermcgirt/Documents/Data Projects/walmart_sales_analytics/data/raw/WalmartSQL repository.csv')
+walmart_sales_df = pd.read_csv('/Users/tylermcgirt/Documents/Data Projects/walmart_sales_analytics/data/processed/processed_walmart_sales_data.csv')
 
 walmart_sales_df['dtme'] = pd.to_datetime(walmart_sales_df['dtme'])  # convert 'dtme' column to datetime
 
@@ -60,16 +60,15 @@ fig_a.update_layout(
     xaxis_title='Date',
     yaxis_title='Total Purchase Value',
     xaxis=dict(
-        tickformat="%Y-%m-%d",
-        type='category'  # This forces the x-axis to be treated as categorical, which may be necessary if not all dates are represented
+        tickformat="%m-%d-%Y" 
     )
 )
 
-
 # fig_b
-fig_b = px.bar(male_top_products.reset_index(), x='product_line', y='quantity',
-               title='Top 5 Product Categories Bought by Male Members',
-               labels={'quantity': 'Quantity Sold', 'product_line': 'Product Line'})
+time_of_day_counts = walmart_sales_df['time_of_day'].value_counts()
+fig_b = px.bar(time_of_day_counts, x=time_of_day_counts.index, y=time_of_day_counts.values,
+               title='Popularity of Purchase Times',
+               labels={'y': 'Number of Purchases', 'index': 'Time of Day'})
 fig_b.update_layout(
     {
     'plot_bgcolor': '#333',
@@ -82,38 +81,34 @@ autosize = True
 )
 
 # fig_c
-fig_c = px.bar(female_top_products.reset_index(), x='product_line', y='quantity',
-               title='Top 5 Product Categories Bought by Female Members',
-               labels={'quantity': 'Quantity Sold', 'product_line': 'Product Line'})
+fig_c = go.Figure()
+
+# Add Male data
+fig_c.add_trace(go.Scatter(
+    x=male_top_products.index, 
+    y=male_top_products.values, 
+    mode='markers', 
+    name='Male Members'
+))
+
+# Add Female data
+fig_c.add_trace(go.Scatter(
+    x=female_top_products.index, 
+    y=female_top_products.values, 
+    mode='markers', 
+    name='Female Members'
+))
+
+# Update layout
 fig_c.update_layout(
-    {
-    'plot_bgcolor': '#333',
-    'paper_bgcolor': '#333',
-    'font': {
-        'color': '#fff'
-    },
-},
-autosize = True
+    title='Top 5 Products Bought by Members',
+    xaxis=dict(title='Product Line'),
+    yaxis=dict(title='Quantity'),
+    plot_bgcolor='#333',
+    paper_bgcolor='#333',
+    font_color='#fff',
+    autosize=True,
 )
-
-# fig_d
-time_of_day_counts = walmart_sales_df['time_of_day'].value_counts()
-fig_d = px.bar(time_of_day_counts, x=time_of_day_counts.index, y=time_of_day_counts.values,
-               title='Popularity of Purchase Times',
-               labels={'y': 'Number of Purchases', 'index': 'Time of Day'})
-fig_d.update_layout(
-    {
-    'plot_bgcolor': '#333',
-    'paper_bgcolor': '#333',
-    'font': {
-        'color': '#fff'
-    },
-},
-autosize = True
-)
-
-# fig_e
-
 
 # sidebar definition
 sidebar = html.Div(
@@ -158,31 +153,25 @@ content_page_1 = html.Div(
                                 ),
                                 html.Div(
                                     [
-                                        dcc.Graph(figure = fig_b, className='dash-graph')
+                                        dcc.Graph(figure = fig_c, className='dash-graph')
                                     ]
                                 )
                             ],className= 'grid-container'
                         ),
-                        html.Br(),
                         html.Div(
                             [
                                 html.Div(
                                     [
-                                        dcc.Graph(figure = fig_c, className='dash-graph')
-                                    ]
-                                ),
-                                html.Div(
-                                    [
-                                        dcc.Graph(figure = fig_d, className='dash-graph')
+                                        dcc.Graph(figure = fig_b, className='dash-graph')
                                     ]
                                 )
-                            ],className= 'grid-container'
+                            ],className= 'container'
                         ),
                     ],
                     className='container'
                 ),
             ],
-            className="content-wrapper"
+            className="main-content-wrapper"
         ) 
     ],
     id="content_page_1", 
